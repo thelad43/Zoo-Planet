@@ -1,6 +1,7 @@
 ﻿namespace ZooPlanet.Web
 {
     using ZooPlanet.Data;
+    using ZooPlanet.Data.Models;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -23,17 +24,18 @@
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Configure<CookiePolicyOptions>(options =>
-            {
-                options.CheckConsentNeeded = context => true;
-                options.MinimumSameSitePolicy = SameSiteMode.None;
-            });
+            services
+                .Configure<CookiePolicyOptions>(options =>
+                {
+                    options.CheckConsentNeeded = context => true;
+                    options.MinimumSameSitePolicy = SameSiteMode.None;
+                });
 
             services.AddDbContext<ZooPlanetDbContext>(options => options
-            .UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
+                .UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
             services
-                .AddDefaultIdentity<IdentityUser>()
+                .AddDefaultIdentity<User>()
                 .AddDefaultUI(UIFramework.Bootstrap3)
                 .AddEntityFrameworkStores<ZooPlanetDbContext>();
 
