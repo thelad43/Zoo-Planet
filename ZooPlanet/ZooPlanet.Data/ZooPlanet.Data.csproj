@@ -13,4 +13,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ZooPlanet.Common\ZooPlanet.Common.csproj" />
+  </ItemGroup>
+
 </Project>
