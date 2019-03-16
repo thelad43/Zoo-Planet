@@ -7,10 +7,13 @@
 
     public class HomeController : Controller
     {
+        [HttpGet]
         public IActionResult Index() => View();
 
+        [HttpGet]
         public IActionResult Privacy() => View();
 
+        [HttpGet]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

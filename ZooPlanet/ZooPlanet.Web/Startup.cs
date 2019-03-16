@@ -34,13 +34,18 @@
             services.AddDbContext<ZooPlanetDbContext>(options => options
                 .UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddResponseCompression();
+
             services
                 .AddDefaultIdentity<User>()
                 .AddDefaultUI(UIFramework.Bootstrap3)
                 .AddEntityFrameworkStores<ZooPlanetDbContext>();
 
             services
-                .AddMvc()
+                .AddMvc(options =>
+                {
+                    options.Filters.Add<AutoValidateAntiforgeryTokenAttribute>();
+                })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
@@ -58,6 +63,7 @@
             }
 
             app.UseHttpsRedirection();
+            app.UseResponseCompression();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
