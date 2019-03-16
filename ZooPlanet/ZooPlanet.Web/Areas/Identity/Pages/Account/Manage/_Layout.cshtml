@@ -1,5 +1,5 @@
 ﻿@{
-    Layout = "/Areas/Identity/Pages/_Layout.cshtml";
+    Layout = "/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Manage your account</h1>
@@ -12,6 +12,21 @@
             <partial name="_ManageNav" />
         </div>
         <div class="col-md-9">
+
+            @if (TempData.ContainsKey(WebConstants.TempDataSuccessMessageKey))
+            {
+                <div class="alert alert-success">
+                    @TempData[WebConstants.TempDataSuccessMessageKey]
+                </div>
+            }
+
+            @if (TempData.ContainsKey(WebConstants.TempDataErrorMessageKey))
+            {
+                <div class="alert alert-danger">
+                    @TempData[WebConstants.TempDataErrorMessageKey]
+                </div>
+            }
+
             @RenderBody()
         </div>
     </div>

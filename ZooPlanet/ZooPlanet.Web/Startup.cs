@@ -1,7 +1,9 @@
 ﻿namespace ZooPlanet.Web
 {
+    using ZooPlanet.Common.Mapping;
     using ZooPlanet.Data;
     using ZooPlanet.Data.Models;
+    using ZooPlanet.Services;
     using ZooPlanet.Web.Infrastructure.Extensions;
 
     using Microsoft.AspNetCore.Builder;
@@ -35,6 +37,10 @@
             services.AddDbContext<ZooPlanetDbContext>(options => options
                 .UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
+            AutoMapperConfig.RegisterMappings(typeof(IService).Assembly);
+
+            services.AddRouting(options => options.LowercaseUrls = true);
+
             services.AddResponseCompression();
             services.AddDomainServices();
 
@@ -49,7 +55,7 @@
                 })
                 .AddDefaultUI(UIFramework.Bootstrap3)
                 .AddEntityFrameworkStores<ZooPlanetDbContext>()
-                .AddDefaultTokenProviders(); 
+                .AddDefaultTokenProviders();
 
             services
                 .AddMvc(options =>
@@ -82,6 +88,10 @@
 
             app.UseMvc(routes =>
             {
+                routes.MapRoute(
+                    name: "areas",
+                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
