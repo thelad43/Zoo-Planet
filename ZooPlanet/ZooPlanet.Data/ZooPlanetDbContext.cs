@@ -5,7 +5,7 @@
     using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore;
 
-    public class ZooPlanetDbContext : IdentityDbContext
+    public class ZooPlanetDbContext : IdentityDbContext<User>
     {
         public ZooPlanetDbContext(DbContextOptions<ZooPlanetDbContext> options)
             : base(options)

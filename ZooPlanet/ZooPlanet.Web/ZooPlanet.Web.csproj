@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ZooPlanet.Data\ZooPlanet.Data.csproj" />
+    <ProjectReference Include="..\ZooPlanet.Services\ZooPlanet.Services.csproj" />
   </ItemGroup>
 
 </Project>

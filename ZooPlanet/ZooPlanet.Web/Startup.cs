@@ -2,6 +2,7 @@
 {
     using ZooPlanet.Data;
     using ZooPlanet.Data.Models;
+    using ZooPlanet.Web.Infrastructure.Extensions;
 
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -35,11 +36,20 @@
                 .UseSqlServer(this.Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddResponseCompression();
+            services.AddDomainServices();
 
             services
-                .AddDefaultIdentity<User>()
+                .AddIdentity<User, IdentityRole>(options =>
+                {
+                    options.Password.RequireDigit = false;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.User.RequireUniqueEmail = true;
+                })
                 .AddDefaultUI(UIFramework.Bootstrap3)
-                .AddEntityFrameworkStores<ZooPlanetDbContext>();
+                .AddEntityFrameworkStores<ZooPlanetDbContext>()
+                .AddDefaultTokenProviders(); 
 
             services
                 .AddMvc(options =>
@@ -68,6 +78,7 @@
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+            app.UseDatabaseMigration();
 
             app.UseMvc(routes =>
             {
