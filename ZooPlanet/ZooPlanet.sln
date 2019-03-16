@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.438
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZooPlanet.Web", "ZooPlanet.Web\ZooPlanet.Web.csproj", "{7AB9CB03-749F-4949-9A59-51DF10976F71}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZooPlanet.Data", "ZooPlanet.Data\ZooPlanet.Data.csproj", "{431F352D-9957-452F-B28F-E61826571156}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{7AB9CB03-749F-4949-9A59-51DF10976F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7AB9CB03-749F-4949-9A59-51DF10976F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7AB9CB03-749F-4949-9A59-51DF10976F71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{431F352D-9957-452F-B28F-E61826571156}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{431F352D-9957-452F-B28F-E61826571156}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{431F352D-9957-452F-B28F-E61826571156}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{431F352D-9957-452F-B28F-E61826571156}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

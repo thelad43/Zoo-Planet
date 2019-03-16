@@ -1,7 +1,8 @@
 ﻿namespace ZooPlanet.Web.Controllers
 {
+    using ZooPlanet.Web.Models;
+
     using Microsoft.AspNetCore.Mvc;
-    using Models;
     using System.Diagnostics;
 
     public class HomeController : Controller
