@@ -22,6 +22,22 @@ div .render-body {
     margin-top: 90px;
 }
 
+.custom-row {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+    padding: 5px;
+}
+
+.img-animal {
+    width: 100%
+}
+
 .border-top {
     border-top: 1px solid #e5e5e5;
 }
