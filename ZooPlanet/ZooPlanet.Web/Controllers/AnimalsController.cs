@@ -4,6 +4,10 @@
 
     public class AnimalsController : Controller
     {
+        [HttpGet]
         public IActionResult Mammals() => View();
+
+        [HttpGet]
+        public IActionResult Reptiles() => View();
     }
 }
