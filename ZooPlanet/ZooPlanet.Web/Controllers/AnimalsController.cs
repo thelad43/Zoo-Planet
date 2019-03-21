@@ -9,5 +9,17 @@
 
         [HttpGet]
         public IActionResult Reptiles() => View();
+
+        [HttpGet]
+        public IActionResult Birds() => View();
+
+        [HttpGet]
+        public IActionResult Amphibians() => View();
+
+        [HttpGet]
+        public IActionResult Arthropods() => View();
+
+        [HttpGet]
+        public IActionResult Fish() => View();
     }
 }
