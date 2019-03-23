@@ -10,6 +10,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.AspNetCore.Identity;
     using System.Threading.Tasks;
+    using System;
 
     public class AnimalsController : Controller
     {
@@ -20,6 +21,24 @@
         {
             this.userManager = userManager;
             this.animals = animals;
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index(int id = 1)
+        {
+            var animals = await this.animals.All(id);
+
+            var animalsCount = await this.animals.CountAsync();
+
+            var model = new AnimalsListingViewModel
+            {
+                Animals = animals,
+                CurrentPage = id,
+                AnimalsCount = animalsCount,
+                PagesCount = (int)Math.Ceiling(animalsCount / (decimal)WebConstants.AnimalsPerPage)
+            };
+
+            return View(model);
         }
 
         [HttpGet]

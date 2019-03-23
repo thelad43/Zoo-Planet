@@ -15,6 +15,7 @@
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
+    using ZooPlanet.Web.Controllers;
 
     public class Startup
     {

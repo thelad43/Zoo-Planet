@@ -60,6 +60,9 @@
                                 <li><a asp-area="" asp-controller="Animals" asp-action="Fish">Fish</a></li>
                             </ul>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Animals" asp-action="Index">Animals</a>
+                        </li>
                         @if (User.IsInRole(WebConstants.AdministratorRole) || User.IsInRole(WebConstants.ZooEmployeeRole))
                         {
                             <li class="nav-item">
