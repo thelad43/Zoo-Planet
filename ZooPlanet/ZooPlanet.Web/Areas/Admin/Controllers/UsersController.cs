@@ -31,7 +31,7 @@
         public IActionResult AddUserToRole() => View();
 
         [HttpPost]
-        public async Task<IActionResult> AddUserToRole(AddUserToRoleModel model)
+        public async Task<IActionResult> AddUserToRole(UserRoleViewModel model)
         {
             var user = await this.users.GetUserByNameAsync(model.UserName);
 
@@ -46,6 +46,32 @@
             await this.userManager.AddToRoleAsync(user, WebConstants.ZooEmployeeRole);
 
             TempData.AddSuccessMessage($"User {user.UserName} successfully added to role '{WebConstants.ZooEmployeeRole}'.");
+
+            return this.RedirectToCustomAction(
+                nameof(HomeController.Index),
+                nameof(HomeController),
+                new { area = string.Empty });
+        }
+
+        [HttpGet]
+        public IActionResult RemoveUserFromRole() => View();
+
+        [HttpPost]
+        public async Task<IActionResult> RemoveUserFromRole(UserRoleViewModel model)
+        {
+            var user = await this.users.GetUserByNameAsync(model.UserName);
+
+            if (user == null)
+            {
+                TempData.AddErrorMessage($"User {user.UserName} could not be found.");
+                return NotFound();
+            }
+
+            // TODO: Log
+
+            await this.userManager.RemoveFromRoleAsync(user, WebConstants.ZooEmployeeRole);
+
+            TempData.AddSuccessMessage($"User {user.UserName} successfully removed from role '{WebConstants.ZooEmployeeRole}'.");
 
             return this.RedirectToCustomAction(
                 nameof(HomeController.Index),
