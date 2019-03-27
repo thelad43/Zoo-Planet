@@ -1,14 +1,14 @@
 ﻿namespace ZooPlanet.Web.Models.Animals
 {
-    using ZooPlanet.Data.Models.Enums;
-
     using System.ComponentModel.DataAnnotations;
-
+    using ZooPlanet.Data.Models.Enums;
     using static Common.Constants.DataConstants;
     using static Common.Constants.ErrorMessages;
 
-    public class AddAnimalFormViewModel
+    public class AnimalFormViewModel
     {
+        public int Id { get; set; }
+
         [Required]
         [MinLength(AnimalNameMinLength, ErrorMessage = AnimalNameMinLengthErrorMessage)]
         [MaxLength(AnimalNameMaxLength, ErrorMessage = AnimalNameMaxLengthErrorMessage)]

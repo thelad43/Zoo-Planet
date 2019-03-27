@@ -6,6 +6,11 @@
     {
         private const string Controller = "Controller";
 
+        public static RedirectResult AccessDenied(this Controller controller)
+        {
+            return controller.Redirect("/Identity/Account/AccessDenied");
+        }
+
         public static RedirectToActionResult RedirectToCustomAction(this Controller controller, string actionName)
         {
             return controller.RedirectToAction(actionName);

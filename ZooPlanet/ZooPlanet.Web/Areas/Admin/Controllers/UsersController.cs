@@ -1,15 +1,14 @@
 ﻿namespace ZooPlanet.Web.Areas.Admin.Controllers
 {
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using System.Threading.Tasks;
     using ZooPlanet.Common.Constants;
     using ZooPlanet.Data.Models;
     using ZooPlanet.Services.Admin;
     using ZooPlanet.Web.Areas.Admin.Models.Users;
     using ZooPlanet.Web.Controllers;
     using ZooPlanet.Web.Infrastructure.Extensions;
-
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Mvc;
-    using System.Threading.Tasks;
 
     public class UsersController : BaseAdminController
     {

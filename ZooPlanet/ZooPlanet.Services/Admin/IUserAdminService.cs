@@ -1,8 +1,7 @@
 ﻿namespace ZooPlanet.Services.Admin
 {
-    using ZooPlanet.Data.Models;
-
     using System.Threading.Tasks;
+    using ZooPlanet.Data.Models;
 
     public interface IUserAdminService
     {

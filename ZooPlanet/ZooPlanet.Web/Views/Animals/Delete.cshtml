@@ -1,0 +1,22 @@
+﻿@model DeleteAnimalViewModel
+
+@{
+    ViewData["Title"] = "Delete an animal";
+}
+
+<h1 class="text-danger">@ViewData["Title"]</h1>
+
+<p><h3 class="text-danger">Are you sure you want to delete animal @Model.Name?</h3></p>
+
+<br />
+
+<div class="row">
+    <div class="col-md-1">
+        <a asp-area="" asp-controller="Animals" asp-action="Index" class="btn btn-success">Back</a>
+    </div>
+    <div class="col-md-1">
+        <form asp-area="" asp-controller="Animals" asp-action="Destroy" asp-route-id="@Model.Id" method="post">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+</div>

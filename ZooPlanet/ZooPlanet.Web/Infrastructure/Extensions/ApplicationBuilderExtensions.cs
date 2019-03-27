@@ -1,14 +1,13 @@
 ﻿namespace ZooPlanet.Web.Infrastructure.Extensions
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.DependencyInjection;
+    using System.Threading.Tasks;
     using ZooPlanet.Common.Constants;
     using ZooPlanet.Data;
     using ZooPlanet.Data.Models;
-
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.Extensions.DependencyInjection;
-    using System.Threading.Tasks;
-    using Microsoft.EntityFrameworkCore;
 
     public static class ApplicationBuilderExtensions
     {

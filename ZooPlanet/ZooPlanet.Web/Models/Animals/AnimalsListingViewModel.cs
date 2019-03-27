@@ -1,8 +1,7 @@
 ﻿namespace ZooPlanet.Web.Models.Animals
 {
-    using ZooPlanet.Services.Models;
-
     using System.Collections.Generic;
+    using ZooPlanet.Services.Models;
 
     public class AnimalsListingViewModel
     {

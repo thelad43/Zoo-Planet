@@ -1,16 +1,15 @@
 ﻿namespace ZooPlanet.Web.Controllers
 {
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using System;
+    using System.Threading.Tasks;
     using ZooPlanet.Common.Constants;
     using ZooPlanet.Data.Models;
     using ZooPlanet.Services;
     using ZooPlanet.Web.Infrastructure.Extensions;
     using ZooPlanet.Web.Models.Animals;
-
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Mvc;
-    using Microsoft.AspNetCore.Identity;
-    using System.Threading.Tasks;
-    using System;
 
     public class AnimalsController : Controller
     {
@@ -65,7 +64,7 @@
 
         [HttpPost]
         [Authorize(Roles = WebConstants.AdministratorRole + "," + WebConstants.ZooEmployeeRole)]
-        public async Task<IActionResult> Add(AddAnimalFormViewModel model)
+        public async Task<IActionResult> Add(AnimalFormViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -85,6 +84,133 @@
                 nameof(HomeController.Index),
                 nameof(HomeController),
                 new { area = string.Empty });
+        }
+
+        [HttpGet]
+        [Authorize(Roles = WebConstants.ZooEmployeeRole + "," + WebConstants.AdministratorRole)]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var user = await this.userManager.GetUserAsync(User);
+
+            var animal = await this.animals.ByUser(id, user);
+
+            var isInAdminRole = await this.userManager.IsInRoleAsync(user, WebConstants.AdministratorRole);
+
+            if (isInAdminRole)
+            {
+                animal = await this.animals.ById(id);
+            }
+
+            if (animal == null)
+            {
+                return this.AccessDenied();
+            }
+
+            var model = new AnimalFormViewModel
+            {
+                Name = animal.Name,
+                Age = animal.Age,
+                ImageUrl = animal.ImageUrl,
+                AnimalClass = animal.AnimalClass,
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = WebConstants.ZooEmployeeRole + "," + WebConstants.AdministratorRole)]
+        public async Task<IActionResult> Edit(AnimalFormViewModel model)
+        {
+            var user = await this.userManager.GetUserAsync(User);
+
+            var animal = await this.animals.ByUser(model.Id, user);
+
+            var isInAdminRole = await this.userManager.IsInRoleAsync(user, WebConstants.AdministratorRole);
+
+            if (isInAdminRole)
+            {
+                animal = await this.animals.ById(model.Id);
+            }
+
+            if (animal == null)
+            {
+                return this.AccessDenied();
+            }
+
+            // TODO: Log
+            await this.animals.Edit(
+                animal.Id,
+                model.Name,
+                model.Age,
+                model.AnimalClass,
+                model.ImageUrl);
+
+            TempData.AddSuccessMessage($"Successfully edited animal {animal.Name}.");
+
+            return this.RedirectToCustomAction(
+                nameof(HomeController.Index),
+                nameof(HomeController),
+                new { area = string.Empty });
+        }
+
+        [HttpGet]
+        [Authorize(Roles = WebConstants.ZooEmployeeRole + "," + WebConstants.AdministratorRole)]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var user = await this.userManager.GetUserAsync(User);
+
+            var animal = await this.animals.ByUser(id, user);
+
+            var isInAdminRole = await this.userManager.IsInRoleAsync(user, WebConstants.AdministratorRole);
+
+            if (isInAdminRole)
+            {
+                animal = await this.animals.ById(id);
+            }
+
+            if (animal == null)
+            {
+                return this.AccessDenied();
+            }
+
+            var model = new DeleteAnimalViewModel
+            {
+                Id = animal.Id,
+                Name = animal.Name
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = WebConstants.ZooEmployeeRole + "," + WebConstants.AdministratorRole)]
+        public async Task<IActionResult> Destroy(int id)
+        {
+            var user = await this.userManager.GetUserAsync(User);
+
+            var animal = await this.animals.ByUser(id, user);
+
+            var isInAdminRole = await this.userManager.IsInRoleAsync(user, WebConstants.AdministratorRole);
+
+            if (isInAdminRole)
+            {
+                animal = await this.animals.ById(id);
+            }
+
+            if (animal == null)
+            {
+                return this.AccessDenied();
+            }
+
+            // TODO: Log
+            await this.animals.Delete(id);
+
+            TempData.AddSuccessMessage("Successfully deleted an animal.");
+
+            return this.RedirectToCustomAction(
+               nameof(HomeController.Index),
+               nameof(HomeController),
+               new { area = string.Empty });
         }
     }
 }

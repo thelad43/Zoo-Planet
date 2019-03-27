@@ -1,10 +1,9 @@
 ﻿namespace ZooPlanet.Web.Infrastructure.Extensions
 {
-    using ZooPlanet.Services;
-
     using Microsoft.Extensions.DependencyInjection;
     using System.Linq;
     using System.Reflection;
+    using ZooPlanet.Services;
 
     public static class ServiceCollectionExtensions
     {

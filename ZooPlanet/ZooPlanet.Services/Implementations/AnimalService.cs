@@ -1,16 +1,14 @@
 ﻿namespace ZooPlanet.Services.Implementations
 {
+    using Microsoft.EntityFrameworkCore;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
     using ZooPlanet.Common.Mapping;
     using ZooPlanet.Data;
     using ZooPlanet.Data.Models;
     using ZooPlanet.Data.Models.Enums;
     using ZooPlanet.Services.Models;
-
-    using Microsoft.EntityFrameworkCore;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
-
     using static Common.Constants.WebConstants;
 
     public class AnimalService : IAnimalService
@@ -55,5 +53,45 @@
             => await this.db
                 .Animals
                 .CountAsync();
+
+        public async Task Delete(int id)
+        {
+            var animal = await this.db
+                .Animals
+                .FirstOrDefaultAsync(a => a.Id == id);
+
+            this.db.Remove(animal);
+
+            await this.db.SaveChangesAsync();
+        }
+
+        public async Task Edit(
+            int id,
+            string name,
+            int age,
+            AnimalClass animalClass,
+            string imageUrl)
+        {
+            var animal = await this.db
+                .Animals
+                .FirstOrDefaultAsync(a => a.Id == id);
+
+            animal.Name = name;
+            animal.Age = age;
+            animal.ImageUrl = imageUrl;
+            animal.AnimalClass = animalClass;
+
+            await this.db.SaveChangesAsync();
+        }
+
+        public async Task<Animal> ById(int id)
+            => await this.db
+                .Animals
+                .FirstOrDefaultAsync(a => a.Id == id);
+
+        public async Task<Animal> ByUser(int id, User user)
+            => await this.db
+                .Animals
+                .FirstOrDefaultAsync(a => a.Id == id && a.UserId == user.Id);
     }
 }

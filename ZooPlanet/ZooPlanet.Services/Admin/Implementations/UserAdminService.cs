@@ -1,12 +1,9 @@
 ﻿namespace ZooPlanet.Services.Admin.Implementations
 {
-    using ZooPlanet.Common.Mapping;
+    using Microsoft.EntityFrameworkCore;
+    using System.Threading.Tasks;
     using ZooPlanet.Data;
     using ZooPlanet.Data.Models;
-
-    using Microsoft.EntityFrameworkCore;
-    using System.Linq;
-    using System.Threading.Tasks;
 
     public class UserAdminService : IUserAdminService
     {

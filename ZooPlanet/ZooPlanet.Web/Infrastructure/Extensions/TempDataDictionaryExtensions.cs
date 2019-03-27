@@ -1,8 +1,7 @@
 ﻿namespace ZooPlanet.Web.Infrastructure.Extensions
 {
-    using ZooPlanet.Common.Constants;
-
     using Microsoft.AspNetCore.Mvc.ViewFeatures;
+    using ZooPlanet.Common.Constants;
 
     public static class TempDataDictionaryExtensions
     {
