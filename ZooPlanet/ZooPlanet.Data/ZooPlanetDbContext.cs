@@ -14,6 +14,8 @@
 
         public DbSet<Animal> Animals { get; set; }
 
+        public DbSet<Contact> Contacts { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder builder)
         {
             base.OnConfiguring(builder);
@@ -26,6 +28,12 @@
                 .HasMany(u => u.Animals)
                 .WithOne(a => a.User)
                 .HasForeignKey(a => a.UserId);
+
+            builder
+                .Entity<User>()
+                .HasMany(u => u.Contacts)
+                .WithOne(c => c.User)
+                .HasForeignKey(c => c.UserId);
 
             base.OnModelCreating(builder);
         }

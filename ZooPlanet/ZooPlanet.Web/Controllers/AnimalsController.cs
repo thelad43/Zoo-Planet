@@ -1,16 +1,17 @@
 ﻿namespace ZooPlanet.Web.Controllers
 {
-    using Microsoft.AspNetCore.Authorization;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.AspNetCore.Mvc;
-    using System;
-    using System.Threading.Tasks;
     using ZooPlanet.Common.Constants;
     using ZooPlanet.Data.Models;
     using ZooPlanet.Services;
     using ZooPlanet.Web.Infrastructure.Extensions;
     using ZooPlanet.Web.Infrastructure.Filters;
     using ZooPlanet.Web.Models.Animals;
+
+    using Microsoft.AspNetCore.Authorization;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+    using System;
+    using System.Threading.Tasks;
 
     public class AnimalsController : Controller
     {

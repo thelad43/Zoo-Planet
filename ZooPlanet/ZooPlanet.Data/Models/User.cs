@@ -6,5 +6,7 @@
     public class User : IdentityUser
     {
         public List<Animal> Animals { get; set; }
+
+        public List<Contact> Contacts { get; set; }
     }
 }

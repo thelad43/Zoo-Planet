@@ -1,7 +1,9 @@
 ﻿namespace ZooPlanet.Web.Models.Animals
 {
-    using System.ComponentModel.DataAnnotations;
     using ZooPlanet.Data.Models.Enums;
+
+    using System.ComponentModel.DataAnnotations;
+
     using static Common.Constants.DataConstants;
     using static Common.Constants.ErrorMessages;
 
