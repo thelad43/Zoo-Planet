@@ -9,6 +9,7 @@
     using ZooPlanet.Data.Models;
     using ZooPlanet.Services;
     using ZooPlanet.Web.Infrastructure.Extensions;
+    using ZooPlanet.Web.Infrastructure.Filters;
     using ZooPlanet.Web.Models.Animals;
 
     public class AnimalsController : Controller
@@ -63,6 +64,7 @@
         public IActionResult Add() => View();
 
         [HttpPost]
+        [Log]
         [Authorize(Roles = WebConstants.AdministratorRole + "," + WebConstants.ZooEmployeeRole)]
         public async Task<IActionResult> Add(AnimalFormViewModel model)
         {
@@ -75,9 +77,7 @@
 
             await this.animals
                 .Add(model.Name, model.Age, model.ImageUrl, model.AnimalClass, user.Id);
-
-            // TODO: Log
-
+            
             TempData.AddSuccessMessage("Successfully added animal to zoo.");
 
             return this.RedirectToCustomAction(
@@ -118,6 +118,7 @@
         }
 
         [HttpPost]
+        [Log]
         [Authorize(Roles = WebConstants.ZooEmployeeRole + "," + WebConstants.AdministratorRole)]
         public async Task<IActionResult> Edit(AnimalFormViewModel model)
         {
@@ -136,8 +137,7 @@
             {
                 return this.AccessDenied();
             }
-
-            // TODO: Log
+            
             await this.animals.Edit(
                 animal.Id,
                 model.Name,
@@ -183,6 +183,7 @@
         }
 
         [HttpPost]
+        [Log]
         [Authorize(Roles = WebConstants.ZooEmployeeRole + "," + WebConstants.AdministratorRole)]
         public async Task<IActionResult> Destroy(int id)
         {
@@ -202,7 +203,6 @@
                 return this.AccessDenied();
             }
 
-            // TODO: Log
             await this.animals.Delete(id);
 
             TempData.AddSuccessMessage("Successfully deleted an animal.");

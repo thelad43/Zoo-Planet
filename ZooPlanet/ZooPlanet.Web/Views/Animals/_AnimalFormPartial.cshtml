@@ -28,7 +28,7 @@
                 <select class="form-control" asp-for="@Model.AnimalClass" asp-items="Html.GetEnumSelectList<AnimalClass>()"></select>
                 <span asp-validation-for="@Model.AnimalClass" class="text-danger"></span>
             </div>
-            <button type="submit" class="btn btn-primary">Edit</button>
+            <button type="submit" class="btn btn-primary">@ViewData["Action"]</button>
         </form>
     </div>
 </div>

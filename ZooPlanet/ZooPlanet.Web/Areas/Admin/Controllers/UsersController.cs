@@ -9,6 +9,7 @@
     using ZooPlanet.Web.Areas.Admin.Models.Users;
     using ZooPlanet.Web.Controllers;
     using ZooPlanet.Web.Infrastructure.Extensions;
+    using ZooPlanet.Web.Infrastructure.Filters;
 
     public class UsersController : BaseAdminController
     {
@@ -30,6 +31,7 @@
         public IActionResult AddUserToRole() => View();
 
         [HttpPost]
+        [Log]
         public async Task<IActionResult> AddUserToRole(UserRoleViewModel model)
         {
             var user = await this.users.GetUserByNameAsync(model.UserName);
@@ -39,9 +41,7 @@
                 TempData.AddErrorMessage($"User {user.UserName} could not be found.");
                 return NotFound();
             }
-
-            // TODO: Log
-
+            
             await this.userManager.AddToRoleAsync(user, WebConstants.ZooEmployeeRole);
 
             TempData.AddSuccessMessage($"User {user.UserName} successfully added to role '{WebConstants.ZooEmployeeRole}'.");
@@ -56,6 +56,7 @@
         public IActionResult RemoveUserFromRole() => View();
 
         [HttpPost]
+        [Log]
         public async Task<IActionResult> RemoveUserFromRole(UserRoleViewModel model)
         {
             var user = await this.users.GetUserByNameAsync(model.UserName);
@@ -65,9 +66,7 @@
                 TempData.AddErrorMessage($"User {user.UserName} could not be found.");
                 return NotFound();
             }
-
-            // TODO: Log
-
+            
             await this.userManager.RemoveFromRoleAsync(user, WebConstants.ZooEmployeeRole);
 
             TempData.AddSuccessMessage($"User {user.UserName} successfully removed from role '{WebConstants.ZooEmployeeRole}'.");

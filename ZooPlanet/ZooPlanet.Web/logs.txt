@@ -1,0 +1,5 @@
+::1 - tedi - ZooPlanet.Web.Controllers.AnimalsController.Add 31-Mar-19 12:13:11
+::1 - tedi - ZooPlanet.Web.Controllers.AnimalsController.Edit 31-Mar-19 12:13:45
+::1 - Administrator - ZooPlanet.Web.Controllers.AnimalsController.Edit 31-Mar-19 12:14:08
+::1 - Administrator - ZooPlanet.Web.Areas.Admin.Controllers.UsersController.AddUserToRole 31-Mar-19 12:15:01
+::1 - Administrator - ZooPlanet.Web.Areas.Admin.Controllers.UsersController.RemoveUserFromRole 31-Mar-19 12:15:09
