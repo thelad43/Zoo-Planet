@@ -4,6 +4,7 @@
     using ZooPlanet.Data.Models;
     using ZooPlanet.Data.Models.Enums;
 
+    using System;
     using System.Threading.Tasks;
 
     public class ContactService : IContactService
@@ -22,6 +23,7 @@
                 Title = title,
                 Message = message,
                 ContactType = contactType,
+                AddedOn = DateTime.UtcNow,
                 UserId = userId
             };
 

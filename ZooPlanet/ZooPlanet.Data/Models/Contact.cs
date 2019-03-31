@@ -2,6 +2,7 @@
 {
     using ZooPlanet.Data.Models.Enums;
 
+    using System;
     using System.ComponentModel.DataAnnotations;
 
     using static ZooPlanet.Common.Constants.DataConstants;
@@ -22,6 +23,8 @@
         public string Message { get; set; }
 
         public ContactType ContactType { get; set; }
+
+        public DateTime AddedOn { get; set; }
 
         public bool IsAnswered { get; set; }
 

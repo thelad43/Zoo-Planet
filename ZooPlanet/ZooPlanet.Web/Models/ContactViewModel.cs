@@ -9,6 +9,8 @@
 
     public class ContactViewModel
     {
+        public int Id { get; set; }
+
         [Required]
         [MinLength(TitleMinLength, ErrorMessage = TitleMinLengthErrorMessage)]
         [MaxLength(TitleMaxLength, ErrorMessage = TitleMaxLengthErrorMessage)]

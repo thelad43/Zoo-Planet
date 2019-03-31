@@ -11,5 +11,7 @@
         public const string TempDataErrorMessageKey = "ErrorMessage";
 
         public const int AnimalsPerPage = 5;
+
+        public const int ContactsPerPage = 10;
     }
 }

@@ -1,0 +1,22 @@
+﻿@model DeleteContactViewModel
+
+@{
+    ViewData["Title"] = "Delete a contact";
+}
+
+<h1 class="text-danger">@ViewData["Title"]</h1>
+
+<p><h3 class="text-danger">Are you sure you want to delete contact @Model.Title?</h3></p>
+
+<br />
+
+<div class="row">
+    <div class="col-md-1">
+        <a asp-area="Admin" asp-controller="Contacts" asp-action="All" class="btn btn-success">Back</a>
+    </div>
+    <div class="col-md-1">
+        <form asp-area="Admin" asp-controller="Contacts" asp-action="Destroy" asp-route-id="@Model.Id" method="post">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+</div>
