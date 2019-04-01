@@ -3,14 +3,14 @@
     using ZooPlanet.Common.Constants;
     using ZooPlanet.Services.Admin;
     using ZooPlanet.Web.Areas.Admin.Models.Contacts;
+    using ZooPlanet.Web.Controllers;
+    using ZooPlanet.Web.Infrastructure.Extensions;
+    using ZooPlanet.Web.Infrastructure.Filters;
+    using ZooPlanet.Web.Models;
 
     using Microsoft.AspNetCore.Mvc;
     using System;
     using System.Threading.Tasks;
-    using ZooPlanet.Web.Infrastructure.Filters;
-    using ZooPlanet.Web.Infrastructure.Extensions;
-    using ZooPlanet.Web.Controllers;
-    using ZooPlanet.Web.Models;
 
     public class ContactsController : BaseAdminController
     {
@@ -49,12 +49,13 @@
                 return NotFound();
             }
 
-            var model = new ContactViewModel
+            var model = new ContactAdminViewModel
             {
                 Id = contact.Id,
                 Title = contact.Title,
                 Message = contact.Message,
-                ContactType = contact.ContactType
+                ContactType = contact.ContactType,
+                IsAnswered = contact.IsAnswered
             };
 
             return View(model);
@@ -62,7 +63,7 @@
 
         [HttpPost]
         [Log]
-        public async Task<IActionResult> Edit(ContactViewModel model)
+        public async Task<IActionResult> Edit(ContactAdminViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -76,7 +77,7 @@
                 return NotFound();
             }
 
-            await this.contacts.Edit(model.Id, model.Title, model.Message, model.ContactType);
+            await this.contacts.Edit(model.Id, model.Title, model.Message, model.ContactType, model.IsAnswered);
 
             TempData.AddSuccessMessage($"Successfully edited contact {contact.Title}.");
 

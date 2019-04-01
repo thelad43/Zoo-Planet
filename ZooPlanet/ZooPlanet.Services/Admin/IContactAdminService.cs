@@ -17,6 +17,6 @@
 
         Task Delete(int id);
 
-        Task Edit(int id, string title, string message, ContactType contactType);
+        Task Edit(int id, string title, string message, ContactType contactType, bool isAnswered);
     }
 }

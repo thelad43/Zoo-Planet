@@ -49,13 +49,14 @@
             await this.db.SaveChangesAsync();
         }
 
-        public async Task Edit(int id, string title, string message, ContactType contactType)
+        public async Task Edit(int id, string title, string message, ContactType contactType, bool isAnswered)
         {
             var contact = await this.ById(id);
 
             contact.Title = title;
             contact.Message = message;
             contact.ContactType = contactType;
+            contact.IsAnswered = isAnswered;
 
             await this.db.SaveChangesAsync();
         }
