@@ -9,7 +9,7 @@
 
     public interface IContactAdminService
     {
-        Task<IEnumerable<ContactServiceModel>> All(int page);
+        Task<IEnumerable<ContactServiceModel>> All(int page, ContactFilter filter);
 
         Task<int> CountAsync();
 

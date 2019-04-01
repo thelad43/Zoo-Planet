@@ -7,6 +7,21 @@
 
 <h2>@ViewData["Title"] </h2>
 
+<br />
+
+<div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+        Filter contacts
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+        <li><a asp-area="Admin" asp-controller="Contacts" asp-action="All">All</a></li>
+        <li><a asp-area="Admin" asp-controller="Contacts" asp-action="All" asp-route-filter="answered">Answered</a></li>
+        <li><a asp-area="Admin" asp-controller="Contacts" asp-action="All" asp-route-filter="unanswered">Unanswered</a></li>
+    </ul>
+</div>
+
+<br />
 <table class="table table-hover table-bordered">
     <thead>
         <tr>

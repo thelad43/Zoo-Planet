@@ -13,5 +13,7 @@
         public const int AnimalsPerPage = 5;
 
         public const int ContactsPerPage = 10;
+
+        public const string AnsweredContact = "answered";
     }
 }

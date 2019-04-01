@@ -1,6 +1,7 @@
 ﻿namespace ZooPlanet.Web.Areas.Admin.Controllers
 {
     using ZooPlanet.Common.Constants;
+    using ZooPlanet.Data.Models.Enums;
     using ZooPlanet.Services.Admin;
     using ZooPlanet.Web.Areas.Admin.Models.Contacts;
     using ZooPlanet.Web.Controllers;
@@ -21,9 +22,9 @@
         }
 
         [HttpGet]
-        public async Task<IActionResult> All(int id = 1)
+        public async Task<IActionResult> All(int id = 1, ContactFilter filter = ContactFilter.All)
         {
-            var contacts = await this.contacts.All(id);
+            var contacts = await this.contacts.All(id, filter);
 
             var contactsCount = await this.contacts.CountAsync();
 

@@ -10,7 +10,7 @@
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
-  
+
     using static ZooPlanet.Common.Constants.WebConstants;
 
     public class ContactAdminService : IContactAdminService
@@ -22,14 +22,31 @@
             this.db = db;
         }
 
-        public async Task<IEnumerable<ContactServiceModel>> All(int page)
-            => await this.db
+        public async Task<IEnumerable<ContactServiceModel>> All(int page, ContactFilter filter)
+        {
+            var query = this.db
                 .Contacts
+                .AsQueryable();
+
+            if (filter == ContactFilter.All)
+            {
+                return await query
+                    .OrderByDescending(c => c.AddedOn)
+                    .Skip((page - 1) * ContactsPerPage)
+                    .Take(ContactsPerPage)
+                    .To<ContactServiceModel>()
+                    .ToListAsync();
+            }
+
+            return await this.db
+                .Contacts
+                .Where(c => c.IsAnswered == (filter == ContactFilter.Answered))
                 .OrderByDescending(c => c.AddedOn)
                 .Skip((page - 1) * ContactsPerPage)
                 .Take(ContactsPerPage)
                 .To<ContactServiceModel>()
                 .ToListAsync();
+        }
 
         public async Task<Contact> ById(int id)
             => await this.db
