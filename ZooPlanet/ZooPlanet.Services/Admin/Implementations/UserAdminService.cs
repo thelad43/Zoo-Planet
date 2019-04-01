@@ -1,9 +1,10 @@
 ﻿namespace ZooPlanet.Services.Admin.Implementations
 {
-    using Microsoft.EntityFrameworkCore;
-    using System.Threading.Tasks;
     using ZooPlanet.Data;
     using ZooPlanet.Data.Models;
+
+    using Microsoft.EntityFrameworkCore;
+    using System.Threading.Tasks;
 
     public class UserAdminService : IUserAdminService
     {

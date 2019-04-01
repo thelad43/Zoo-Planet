@@ -6,7 +6,6 @@
     using ZooPlanet.Web.Controllers;
     using ZooPlanet.Web.Infrastructure.Extensions;
     using ZooPlanet.Web.Infrastructure.Filters;
-    using ZooPlanet.Web.Models;
 
     using Microsoft.AspNetCore.Mvc;
     using System;

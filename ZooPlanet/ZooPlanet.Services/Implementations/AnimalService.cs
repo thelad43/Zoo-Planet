@@ -1,14 +1,16 @@
 ﻿namespace ZooPlanet.Services.Implementations
 {
-    using Microsoft.EntityFrameworkCore;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Threading.Tasks;
     using ZooPlanet.Common.Mapping;
     using ZooPlanet.Data;
     using ZooPlanet.Data.Models;
     using ZooPlanet.Data.Models.Enums;
     using ZooPlanet.Services.Models;
+
+    using Microsoft.EntityFrameworkCore;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+
     using static Common.Constants.WebConstants;
 
     public class AnimalService : IAnimalService
