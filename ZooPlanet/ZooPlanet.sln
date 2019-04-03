@@ -1,15 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.438
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZooPlanet.Web", "ZooPlanet.Web\ZooPlanet.Web.csproj", "{7AB9CB03-749F-4949-9A59-51DF10976F71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZooPlanet.Web", "ZooPlanet.Web\ZooPlanet.Web.csproj", "{7AB9CB03-749F-4949-9A59-51DF10976F71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZooPlanet.Data", "ZooPlanet.Data\ZooPlanet.Data.csproj", "{431F352D-9957-452F-B28F-E61826571156}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZooPlanet.Data", "ZooPlanet.Data\ZooPlanet.Data.csproj", "{431F352D-9957-452F-B28F-E61826571156}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZooPlanet.Common", "ZooPlanet.Common\ZooPlanet.Common.csproj", "{65F9F699-AF0B-4491-B5EE-FB91C9ED0B67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZooPlanet.Common", "ZooPlanet.Common\ZooPlanet.Common.csproj", "{65F9F699-AF0B-4491-B5EE-FB91C9ED0B67}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZooPlanet.Services", "ZooPlanet.Services\ZooPlanet.Services.csproj", "{083E8911-5883-463E-BCA4-8B126A8CD4D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ZooPlanet.Services", "ZooPlanet.Services\ZooPlanet.Services.csproj", "{083E8911-5883-463E-BCA4-8B126A8CD4D2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZooPlanet.Tests", "ZooPlanet.Tests\ZooPlanet.Tests.csproj", "{B0F68C85-B199-449C-9791-6AED1B38436E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{083E8911-5883-463E-BCA4-8B126A8CD4D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{083E8911-5883-463E-BCA4-8B126A8CD4D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{083E8911-5883-463E-BCA4-8B126A8CD4D2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0F68C85-B199-449C-9791-6AED1B38436E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0F68C85-B199-449C-9791-6AED1B38436E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0F68C85-B199-449C-9791-6AED1B38436E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0F68C85-B199-449C-9791-6AED1B38436E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

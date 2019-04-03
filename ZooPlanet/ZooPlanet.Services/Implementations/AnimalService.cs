@@ -7,6 +7,7 @@
     using ZooPlanet.Services.Models;
 
     using Microsoft.EntityFrameworkCore;
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Threading.Tasks;
@@ -22,7 +23,7 @@
             this.db = db;
         }
 
-        public async Task Add(
+        public async Task AddAsync(
             string name,
             int age,
             string imageUrl,
@@ -42,7 +43,7 @@
             await this.db.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<AnimalServiceModel>> All(int page)
+        public async Task<IEnumerable<AnimalServiceModel>> AllAsync(int page)
             => await this.db
                 .Animals
                 .OrderBy(a => a.AnimalClass)
@@ -56,18 +57,23 @@
                 .Animals
                 .CountAsync();
 
-        public async Task Delete(int id)
+        public async Task DeleteAsync(int id)
         {
             var animal = await this.db
                 .Animals
                 .FirstOrDefaultAsync(a => a.Id == id);
+
+            if (animal == null)
+            {
+                throw new InvalidOperationException();
+            }
 
             this.db.Remove(animal);
 
             await this.db.SaveChangesAsync();
         }
 
-        public async Task Edit(
+        public async Task EditAsync(
             int id,
             string name,
             int age,
@@ -78,6 +84,11 @@
                 .Animals
                 .FirstOrDefaultAsync(a => a.Id == id);
 
+            if (animal == null)
+            {
+                throw new InvalidOperationException();
+            }
+
             animal.Name = name;
             animal.Age = age;
             animal.ImageUrl = imageUrl;
@@ -86,12 +97,12 @@
             await this.db.SaveChangesAsync();
         }
 
-        public async Task<Animal> ById(int id)
+        public async Task<Animal> ByIdAsync(int id)
             => await this.db
                 .Animals
                 .FirstOrDefaultAsync(a => a.Id == id);
 
-        public async Task<Animal> ByUser(int id, User user)
+        public async Task<Animal> ByUserAsync(int id, User user)
             => await this.db
                 .Animals
                 .FirstOrDefaultAsync(a => a.Id == id && a.UserId == user.Id);

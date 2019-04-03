@@ -27,7 +27,7 @@
         [HttpGet]
         public async Task<IActionResult> Index(int id = 1)
         {
-            var animals = await this.animals.All(id);
+            var animals = await this.animals.AllAsync(id);
 
             var animalsCount = await this.animals.CountAsync();
 
@@ -77,7 +77,7 @@
             var user = await userManager.GetUserAsync(User);
 
             await this.animals
-                .Add(model.Name, model.Age, model.ImageUrl, model.AnimalClass, user.Id);
+                .AddAsync(model.Name, model.Age, model.ImageUrl, model.AnimalClass, user.Id);
             
             TempData.AddSuccessMessage("Successfully added animal to zoo.");
 
@@ -93,13 +93,13 @@
         {
             var user = await this.userManager.GetUserAsync(User);
 
-            var animal = await this.animals.ByUser(id, user);
+            var animal = await this.animals.ByUserAsync(id, user);
 
             var isInAdminRole = await this.userManager.IsInRoleAsync(user, WebConstants.AdministratorRole);
 
             if (isInAdminRole)
             {
-                animal = await this.animals.ById(id);
+                animal = await this.animals.ByIdAsync(id);
             }
 
             if (animal == null)
@@ -125,13 +125,13 @@
         {
             var user = await this.userManager.GetUserAsync(User);
 
-            var animal = await this.animals.ByUser(model.Id, user);
+            var animal = await this.animals.ByUserAsync(model.Id, user);
 
             var isInAdminRole = await this.userManager.IsInRoleAsync(user, WebConstants.AdministratorRole);
 
             if (isInAdminRole)
             {
-                animal = await this.animals.ById(model.Id);
+                animal = await this.animals.ByIdAsync(model.Id);
             }
 
             if (animal == null)
@@ -139,7 +139,7 @@
                 return this.AccessDenied();
             }
             
-            await this.animals.Edit(
+            await this.animals.EditAsync(
                 animal.Id,
                 model.Name,
                 model.Age,
@@ -160,13 +160,13 @@
         {
             var user = await this.userManager.GetUserAsync(User);
 
-            var animal = await this.animals.ByUser(id, user);
+            var animal = await this.animals.ByUserAsync(id, user);
 
             var isInAdminRole = await this.userManager.IsInRoleAsync(user, WebConstants.AdministratorRole);
 
             if (isInAdminRole)
             {
-                animal = await this.animals.ById(id);
+                animal = await this.animals.ByIdAsync(id);
             }
 
             if (animal == null)
@@ -190,13 +190,13 @@
         {
             var user = await this.userManager.GetUserAsync(User);
 
-            var animal = await this.animals.ByUser(id, user);
+            var animal = await this.animals.ByUserAsync(id, user);
 
             var isInAdminRole = await this.userManager.IsInRoleAsync(user, WebConstants.AdministratorRole);
 
             if (isInAdminRole)
             {
-                animal = await this.animals.ById(id);
+                animal = await this.animals.ByIdAsync(id);
             }
 
             if (animal == null)
@@ -204,7 +204,7 @@
                 return this.AccessDenied();
             }
 
-            await this.animals.Delete(id);
+            await this.animals.DeleteAsync(id);
 
             TempData.AddSuccessMessage("Successfully deleted an animal.");
 
