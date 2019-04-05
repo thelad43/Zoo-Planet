@@ -9,14 +9,14 @@
 
     public interface IContactAdminService
     {
-        Task<IEnumerable<ContactServiceModel>> All(int page, ContactFilter filter);
+        Task<IEnumerable<ContactServiceModel>> AllAsync(int page, ContactFilter filter);
 
         Task<int> CountAsync();
 
-        Task<Contact> ById(int id);
+        Task<Contact> ByIdAsync(int id);
 
-        Task Delete(int id);
+        Task DeleteAsync(int id);
 
-        Task Edit(int id, string title, string message, ContactType contactType, bool isAnswered);
+        Task EditAsync(int id, string title, string message, ContactType contactType, bool isAnswered);
     }
 }

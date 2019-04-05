@@ -6,6 +6,6 @@
 
     public interface IContactService
     {
-        Task Add(string title, string message, ContactType contactType, string userId);
+        Task AddAsync(string title, string message, ContactType contactType, string userId);
     }
 }

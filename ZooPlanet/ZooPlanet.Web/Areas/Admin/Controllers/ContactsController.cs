@@ -24,7 +24,7 @@
         [HttpGet]
         public async Task<IActionResult> All(int id = 1, ContactFilter filter = ContactFilter.All)
         {
-            var contacts = await this.contacts.All(id, filter);
+            var contacts = await this.contacts.AllAsync(id, filter);
 
             var contactsCount = await this.contacts.CountAsync();
 
@@ -42,7 +42,7 @@
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
-            var contact = await this.contacts.ById(id);
+            var contact = await this.contacts.ByIdAsync(id);
 
             if (contact == null)
             {
@@ -70,14 +70,14 @@
                 return View(model);
             }
 
-            var contact = await this.contacts.ById(model.Id);
+            var contact = await this.contacts.ByIdAsync(model.Id);
 
             if (contact == null)
             {
                 return NotFound();
             }
 
-            await this.contacts.Edit(model.Id, model.Title, model.Message, model.ContactType, model.IsAnswered);
+            await this.contacts.EditAsync(model.Id, model.Title, model.Message, model.ContactType, model.IsAnswered);
 
             TempData.AddSuccessMessage($"Successfully edited contact {contact.Title}.");
 
@@ -90,7 +90,7 @@
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var contact = await this.contacts.ById(id);
+            var contact = await this.contacts.ByIdAsync(id);
 
             if (contact == null)
             {
@@ -110,14 +110,14 @@
         [Log]
         public async Task<IActionResult> Destroy(int id)
         {
-            var contact = await this.contacts.ById(id);
+            var contact = await this.contacts.ByIdAsync(id);
 
             if (contact == null)
             {
                 return NotFound();
             }
 
-            await this.contacts.Delete(id);
+            await this.contacts.DeleteAsync(id);
 
             TempData.AddSuccessMessage("Successfully deleted a contact.");
 

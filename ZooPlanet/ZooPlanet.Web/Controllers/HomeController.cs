@@ -46,7 +46,7 @@
 
             var id = User.FindFirst(ClaimTypes.NameIdentifier).Value;
 
-            await this.contacts.Add(model.Title, model.Message, model.ContactType, id);
+            await this.contacts.AddAsync(model.Title, model.Message, model.ContactType, id);
 
             TempData.AddSuccessMessage("Thank you for the contact message. We will send you email answering your message.");
 

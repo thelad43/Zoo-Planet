@@ -22,7 +22,7 @@
             this.db = db;
         }
 
-        public async Task<IEnumerable<ContactServiceModel>> All(int page, ContactFilter filter)
+        public async Task<IEnumerable<ContactServiceModel>> AllAsync(int page, ContactFilter filter)
         {
             var query = this.db
                 .Contacts
@@ -48,7 +48,7 @@
                 .ToListAsync();
         }
 
-        public async Task<Contact> ById(int id)
+        public async Task<Contact> ByIdAsync(int id)
             => await this.db
                 .Contacts
                 .FirstOrDefaultAsync(c => c.Id == id);
@@ -58,17 +58,17 @@
                 .Contacts
                 .CountAsync();
 
-        public async Task Delete(int id)
+        public async Task DeleteAsync(int id)
         {
-            var contact = await this.ById(id);
+            var contact = await this.ByIdAsync(id);
 
             this.db.Remove(contact);
             await this.db.SaveChangesAsync();
         }
 
-        public async Task Edit(int id, string title, string message, ContactType contactType, bool isAnswered)
+        public async Task EditAsync(int id, string title, string message, ContactType contactType, bool isAnswered)
         {
-            var contact = await this.ById(id);
+            var contact = await this.ByIdAsync(id);
 
             contact.Title = title;
             contact.Message = message;

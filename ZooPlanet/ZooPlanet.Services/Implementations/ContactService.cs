@@ -16,7 +16,7 @@
             this.db = db;
         }
 
-        public async Task Add(string title, string message, ContactType contactType, string userId)
+        public async Task AddAsync(string title, string message, ContactType contactType, string userId)
         {
             var contact = new Contact
             {
